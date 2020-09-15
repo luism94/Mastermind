@@ -3,6 +3,7 @@ package codes;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import static codes.Colors.*;
 
 public class TableBoard implements DrawBoard{
 
@@ -38,11 +39,30 @@ public class TableBoard implements DrawBoard{
 		Iterator solIt = systemSolutions.iterator();
 		Combination comb = null;
 		String sol = "";
+		
 		while (combIt.hasNext() && solIt.hasNext()) {
 			comb = (Combination) combIt.next();
-			combDraw += comb.drawCombination();
-			sol += solIt.next();
-			System.out.println(combDraw + " " + sol);
+			combDraw = comb.drawCombination();
+			sol = (String) solIt.next();
+			System.out.println("Jugador: " + combDraw + "Resultado: " + sol);
+		}
+	}
+
+	public boolean endGame(String solution) {
+		int redCount = 0, solIndex = 0;
+		
+		while (solIndex < solution.length()) {
+			if (solution.substring(solIndex, solIndex).equals(RED + "  " + RESET + " ")) {
+				redCount++;
+			}
+			
+			solIndex += 3;
+		}
+		
+		if (redCount == 4) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

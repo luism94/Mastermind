@@ -34,15 +34,21 @@ public class Controller {
 	private void playGame() {
 		Combination playerComb = null;
 		String solution = "";
-		boolean winner = false;
+		boolean end = false;
 		
-		while (winner) {
+		while (!end) {
 			playerComb = player.newTry();
 			solution = system.compareCombinations(playerComb);
+			//System.out.println(solution);
 			board.addTry(playerComb, solution);
-			
 			board.drawingGame();
+			
 			//decidir quien gana
+			end = board.endGame(solution);
+			if (!end) {
+				System.out.println();
+				System.out.println("Next turn: " + "\n");
+			}
 		}
 	}
 

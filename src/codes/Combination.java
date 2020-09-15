@@ -97,7 +97,7 @@ public class Combination {
 		System.out.println(COLOR_MENU_2);
 		
 		for (int i = 0; i < gm.getPieceNum(); i++) {
-			System.out.println("Escoge el color: ");
+			System.out.println("Choose a color: ");
 			pieceComb[i] = new GamePiece(chooseColor(scn.nextInt()));
 		}
 	}
@@ -108,11 +108,11 @@ public class Combination {
 
 	public String drawCombination() {
 		String draw = "";
+		
 		for (int i = 0; i < gm.getPieceNum(); i++) {
-			
-			draw += pieceComb[i].drawPiece();
-			
+			draw += pieceComb[i].drawPiece() + RESET + " ";
 		}
+		
 		return draw;
 	}
 }

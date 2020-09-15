@@ -17,6 +17,7 @@ public class GameSystem {
 		gm = mode;
 		secretComb = new Combination(mode);	//Array con las fichas de la respuesta secreta
 		secretComb.generateSecretCombination();
+		System.out.println(secretComb);
 		//Genero una ficha de un color aleatorio y compruebo si esta repetida
 	}
 
@@ -88,11 +89,11 @@ public class GameSystem {
 		}
 		
 		for (int i = 0; i < redCount; i++) {
-			solution = solution + RED + "ficha" + RESET;
+			solution = solution + RED + "  " + RESET + " ";
 		}
 		
 		for (int i = 0; i < whiteCount; i++) {
-			solution = solution + WHITE + "ficha" + RESET;
+			solution = solution + WHITE + "  " + RESET + " ";
 		}
 		
 		return solution;

@@ -20,7 +20,6 @@ public class Main {
 //		System.out.println(system.getSecretComb().toString());
 //		Player player = new Player(EASY);
 //		Combination playerComb = player.newTry();
-		Controller control = new Controller();
-		System.out.println();
+		Controller ctr = new Controller();
 	}
 }

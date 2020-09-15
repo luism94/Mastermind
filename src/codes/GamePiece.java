@@ -30,7 +30,7 @@ public class GamePiece {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return pieceColor + "Ficha" + RESET;
+		return pieceColor + "ficha" + RESET;
 	}
 
 	public void assignColor(String color) {
@@ -42,6 +42,6 @@ public class GamePiece {
 	}
 
 	public String drawPiece() {
-		return pieceColor + "  " + RESET;
+		return pieceColor + "  ";
 	}
 }
