@@ -44,10 +44,12 @@ public class Controller {
 			board.drawingGame();
 			
 			//decidir quien gana
-			end = board.endGame(solution);
+			end = board.endGame();
 			if (!end) {
 				System.out.println();
 				System.out.println("Next turn: " + "\n");
+			} else {
+				System.out.println("WINNER!");
 			}
 		}
 	}

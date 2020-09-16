@@ -48,15 +48,16 @@ public class TableBoard implements DrawBoard{
 		}
 	}
 
-	public boolean endGame(String solution) {
+	public boolean endGame() {
 		int redCount = 0, solIndex = 0;
-		
-		while (solIndex < solution.length()) {
-			if (solution.substring(solIndex, solIndex).equals(RED + "  " + RESET + " ")) {
+		String lastSol = systemSolutions.get(systemSolutions.size() - 1);
+
+		while (solIndex < lastSol.length()) {
+			if (lastSol.substring(solIndex, solIndex + 12).equals(RED + "  " + RESET + " ")) {
 				redCount++;
 			}
 			
-			solIndex += 3;
+			solIndex += 12;
 		}
 		
 		if (redCount == 4) {
@@ -64,7 +65,7 @@ public class TableBoard implements DrawBoard{
 		} else {
 			return false;
 		}
+		
+		
 	}
-
-	
 }
