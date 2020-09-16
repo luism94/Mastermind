@@ -27,14 +27,15 @@ public class Controller {
 			player = new Player(gm);
 			system = new GameSystem(gm);
 			board = new TableBoard(gm);
-			playGame();
+			startGame();
 		}
 	}
 
-	private void playGame() {
+	private void startGame() {
 		Combination playerComb = null;
 		String solution = "";
 		boolean end = false;
+		int trialCount = 1;
 		
 		while (!end) {
 			playerComb = player.newTry();
@@ -44,13 +45,23 @@ public class Controller {
 			board.drawingGame();
 			
 			//decidir quien gana
-			end = board.endGame();
+			end = board.checkWinner();
 			if (!end) {
-				System.out.println();
-				System.out.println("Next turn: " + "\n");
+				if (gm != EASY) {
+					end = checkTrials(trialCount);
+				}
 			} else {
 				System.out.println("WINNER!");
 			}
+			trialCount++;
+		}
+	}
+
+	private boolean checkTrials(int trialCount) {
+		if (trialCount < gm.getTrialNum()) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 

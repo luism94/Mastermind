@@ -29,9 +29,13 @@ public class GameSystem {
 		this.secretComb = secretComb;
 	}
 
-	public String compareCombinations(Combination playerComb) {
+	public String compareCombinations(Combination playerComb, boolean isRepeated) {
 		//ficha de la cmb del jugador con toda la comb secreta
 		//En la comb de la respuesta se coloca una ficha roja, blanca o nada en la posicion oportuna
+		
+		if (isRepeated) {
+			secretComb.compareCombinationRepeated(playerComb);
+		}
 		
 		int playerCount = 0;
 		int secretCount = 0;
@@ -41,7 +45,7 @@ public class GameSystem {
 		boolean alreadyChecked;
 		String[] checkedColors = new String[gm.getPieceNum()];
 		int checkedCount = 0;
-//		int solutionCount = 0;
+
 		GamePiece piece = null;
 		
 		while (playerCount < gm.getPieceNum()) {

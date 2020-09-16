@@ -44,11 +44,11 @@ public class TableBoard implements DrawBoard{
 			comb = (Combination) combIt.next();
 			combDraw = comb.drawCombination();
 			sol = (String) solIt.next();
-			System.out.println("Jugador: " + combDraw + "Resultado: " + sol);
+			System.out.println(combDraw + "  " + sol);
 		}
 	}
 
-	public boolean endGame() {
+	public boolean checkWinner() {
 		int redCount = 0, solIndex = 0;
 		String lastSol = systemSolutions.get(systemSolutions.size() - 1);
 
@@ -68,4 +68,5 @@ public class TableBoard implements DrawBoard{
 		
 		
 	}
+
 }

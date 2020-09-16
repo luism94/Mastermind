@@ -2,7 +2,7 @@ package codes;
 
 public enum GameMode {
 
-	EASY(4, false, 8), NORMAL(4, 15, false, 8), MEDIUM(6, 20, true, 8);
+	EASY(4, false, 8), NORMAL(4, 3, false, 8), MEDIUM(6, 3, true, 8);
 
 	private int pieceNum;
 	private int colorNum;
