@@ -35,7 +35,7 @@ public class GameSystem {
 		String solution = "";
 		
 		if (gm.isRepeated()) {
-//			solution = secretComb.compareCombinationRepeated(playerComb);
+			solution = secretComb.compareCombinationRepeated(playerComb);
 		} else {
 			solution = secretComb.compareCombinationNoRepeated(playerComb);
 		}

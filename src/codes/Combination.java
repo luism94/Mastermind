@@ -116,10 +116,31 @@ public class Combination {
 		return draw;
 	}
 
-//	public String compareCombinationRepeated(Combination playerComb) {
-//		
-//		
-//	}
+	public String compareCombinationRepeated(Combination playerComb) {
+		String solution = "";
+		GamePiece piece = null;
+		GamePiece[] secretCopy = new GamePiece[gm.getPieceNum()];
+		int playerCount = 0, secretCount, redCount = 0, whiteCount = 0;
+		boolean alreadyChecked = false;
+		
+		
+		while (playerCount < gm.getPieceNum()) {
+			secretCount = 0;
+			piece = playerComb.getPieceComb()[playerCount];
+			while (secretCount < gm.getPieceNum()) {
+				if (piece.equals(this.getPieceComb()[secretCount])) {
+					if (secretCount == playerCount) {
+						redCount++;
+					} else {
+						whiteCount++;
+					}
+					secretCopy[player]
+				}
+			}
+		}
+		
+		return solution;
+	}
 
 	public String compareCombinationNoRepeated(Combination playerComb) {
 		
