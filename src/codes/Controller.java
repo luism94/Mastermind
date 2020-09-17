@@ -7,7 +7,7 @@ import static codes.GameMode.*;
 public class Controller {
 
 	private Player player;
-	private GameSystem system;
+	private Computer system;
 	private TableBoard board;
 	private GameMode gm;
 	
@@ -25,7 +25,7 @@ public class Controller {
 			gm = chooseGameMode(option);
 			//Creo el jugador, la maquina y el tablero de la partida dependiendo del modo
 			player = new Player(gm);
-			system = new GameSystem(gm);
+			system = new Computer(gm);
 			board = new TableBoard(gm);
 			startGame();
 		}

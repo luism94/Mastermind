@@ -8,12 +8,12 @@ import java.util.List;
 
 import static codes.Colors.*;
 
-public class GameSystem {
+public class Computer {
 
 	private GameMode gm;
 	private Combination secretComb;
 	
-	public GameSystem(GameMode mode) {
+	public Computer(GameMode mode) {
 		gm = mode;
 		secretComb = new Combination(mode);	//Array con las fichas de la respuesta secreta
 		secretComb.generateSecretCombination();

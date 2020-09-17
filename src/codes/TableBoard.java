@@ -34,18 +34,25 @@ public class TableBoard implements DrawBoard{
 	public void drawingGame() {
 		String board = "";
 		String combDraw = "";
+		String head, body, foot = "";
 		boolean end = false;
 		Iterator combIt = playerTrials.iterator();
 		Iterator solIt = systemSolutions.iterator();
 		Combination comb = null;
 		String sol = "";
 		
+		head = DARK_BOARD + "                              " + "\n";
+		body = DARK_BOARD + "  " + LIGHT_BOARD + "                          " + DARK_BOARD + "  " + "\n";
 		while (combIt.hasNext() && solIt.hasNext()) {
 			comb = (Combination) combIt.next();
 			combDraw = comb.drawCombination();
 			sol = (String) solIt.next();
-			System.out.println(combDraw + "  " + sol);
+			body += DARK_BOARD + "  " + LIGHT_BOARD + " " + combDraw + " " + sol + " " + DARK_BOARD + "  " + "\n";
+			//System.out.println(combDraw + "  " + sol);
+			body += DARK_BOARD + "  " + LIGHT_BOARD + "                          " + DARK_BOARD + "  " + "\n";
 		}
+		foot = DARK_BOARD + "                              " + "\n";
+		System.out.println(head + body + foot);
 	}
 
 	public boolean checkWinner() {

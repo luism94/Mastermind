@@ -14,5 +14,6 @@ public class Colors {
 	//public static final String CYAN = "\u001B[36m";
 	public static final String BROWN = "\u001B[48;2;150;100;50m"; //Colores en RGB
 	public static final String ORANGE = "\u001B[48;2;255;100;0m";
-	//public static final String NULL = " ";
+	public static final String LIGHT_BOARD = "\u001B[48;2;255;200;140m";
+	public static final String DARK_BOARD = "\u001B[48;2;175;105;40m";
 }

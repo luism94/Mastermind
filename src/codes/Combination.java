@@ -84,7 +84,7 @@ public class Combination {
 		String comb = "";
 		
 		for (int i = 0; i < gm.getPieceNum(); i++) {
-			comb = comb + pieceComb[i].getPieceColor() + "Ficha " + (i+1) + "\n" + RESET;
+			comb = comb + pieceComb[i].getPieceColor() + "Ficha " + (i+1) + RESET;
 		}
 		
 		return comb;
@@ -97,6 +97,7 @@ public class Combination {
 		System.out.println(COLOR_MENU_2);
 		
 		for (int i = 0; i < gm.getPieceNum(); i++) {
+			
 			System.out.println("Choose a color: ");
 			pieceComb[i] = new GamePiece(chooseColor(scn.nextInt()));
 		}
@@ -110,7 +111,7 @@ public class Combination {
 		String draw = "";
 		
 		for (int i = 0; i < gm.getPieceNum(); i++) {
-			draw += pieceComb[i].drawPiece() + RESET + " ";
+			draw += pieceComb[i].drawPiece() + LIGHT_BOARD + " ";
 		}
 		
 		return draw;
@@ -121,22 +122,32 @@ public class Combination {
 		GamePiece piece = null;
 		GamePiece[] secretCopy = new GamePiece[gm.getPieceNum()];
 		int playerCount = 0, secretCount, redCount = 0, whiteCount = 0;
-		boolean alreadyChecked = false;
-		
 		
 		while (playerCount < gm.getPieceNum()) {
 			secretCount = 0;
 			piece = playerComb.getPieceComb()[playerCount];
 			while (secretCount < gm.getPieceNum()) {
 				if (piece.equals(this.getPieceComb()[secretCount])) {
-					if (secretCount == playerCount) {
-						redCount++;
-					} else {
-						whiteCount++;
+					if (secretCopy[secretCount] == null) {
+						//esta en la secreta
+						if (secretCount == playerCount) {
+							redCount++;
+						} else {
+							whiteCount++;
+						}
+						//copio la ficha de la secreta en su posicion si coincide con la del jugador
+						secretCopy[secretCount] = piece;
 					}
-					secretCopy[player]
 				}
 			}
+		}
+		
+		for (int i = 0; i < redCount; i++) {
+			solution = solution + RED + "  " + LIGHT_BOARD + " ";
+		}
+		
+		for (int i = 0; i < whiteCount; i++) {
+			solution = solution + WHITE + "  " + LIGHT_BOARD + " ";
 		}
 		
 		return solution;
@@ -152,14 +163,13 @@ public class Combination {
 		boolean alreadyChecked;
 		String[] checkedColors = new String[gm.getPieceNum()];
 		int checkedCount = 0;
-
 		GamePiece piece = null;
 		
 		while (playerCount < gm.getPieceNum()) {
 			secretCount = 0;
 			piece = playerComb.getPieceComb()[playerCount];
 			alreadyChecked = false;
-			checkedCount=0;
+			checkedCount = 0;
 			while (secretCount < gm.getPieceNum()) {
 				if (piece.equals(this.getPieceComb()[secretCount])) {
 					//esta en la secreta
