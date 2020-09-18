@@ -13,6 +13,7 @@ public class Controller {
 	
 	public Controller() {
 		int option = showMenu();
+		boolean ia = false;
 		
 		if (option == 3) {
 			System.out.println(Constants.EXIT);
@@ -21,14 +22,41 @@ public class Controller {
 			System.out.println(Constants.HOW_TO_PLAY_2);
 		} else {
 			option = showGameMenu();
-			//Elijo el modo de juego por la opcion escogida
-			gm = chooseGameMode(option);
-			//Creo el jugador, la maquina y el tablero de la partida dependiendo del modo
-			player = new Player(gm);
-			system = new Computer(gm);
-			board = new TableBoard(gm);
-			startGame();
+			
+			if (option == 4) {
+				gm = EASY;
+				//cargar IA
+				player = new AI_Player(gm);
+				//ordenador y tablero igual
+				
+			} else {
+				
+				//Elijo el modo de juego por la opcion escogida
+				gm = chooseGameMode(option);
+				player = new User(gm);
+			}
+				//Creo el jugador, la maquina y el tablero de la partida dependiendo del modo
+				
+				system = new Computer(gm);
+				board = new TableBoard(gm);
+				startGame();
+			
+			
+			
 		}
+	}
+
+	private int showIAMenu() {
+		
+		return 0;
+	}
+
+	private boolean chooseIAPlayer(int option) {
+		switch (option) {
+		case 1:
+			
+		}
+		return false;
 	}
 
 	private void startGame() {
@@ -40,7 +68,6 @@ public class Controller {
 		while (!end) {
 			playerComb = player.newTry();
 			solution = system.compareCombinations(playerComb);
-			//System.out.println(solution);
 			board.addTry(playerComb, solution);
 			board.drawingGame();
 			

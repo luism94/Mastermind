@@ -127,6 +127,7 @@ public class Combination {
 			secretCount = 0;
 			piece = playerComb.getPieceComb()[playerCount];
 			while (secretCount < gm.getPieceNum()) {
+				System.out.println("entrA");
 				if (piece.equals(this.getPieceComb()[secretCount])) {
 					if (secretCopy[secretCount] == null) {
 						//esta en la secreta
@@ -139,7 +140,9 @@ public class Combination {
 						secretCopy[secretCount] = piece;
 					}
 				}
+				secretCount++;
 			}
+			playerCount++;
 		}
 		
 		for (int i = 0; i < redCount; i++) {
@@ -218,6 +221,10 @@ public class Combination {
 		}
 		
 		return solution;
+	}
+
+	public void generateNewPiece(int position, int option) {
+		pieceComb[position] = new GamePiece(chooseColor(option));
 	}
 }
 

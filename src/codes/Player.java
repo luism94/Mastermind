@@ -4,19 +4,13 @@ import static codes.Constants.*;
 
 import java.util.Scanner;
 
-public class Player {
+public abstract class Player {
 
-	private GameMode mode;
+	protected GameMode mode;
 	
 	public Player(GameMode mode) {
 		this.mode = mode;
 	}
 
-	public Combination newTry() {
-		Combination playerComb = new Combination(mode);
-		
-		playerComb.generateCombination();
-		
-		return playerComb;
-	}
+	public abstract Combination newTry();
 }
