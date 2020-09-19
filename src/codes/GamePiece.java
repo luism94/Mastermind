@@ -1,17 +1,23 @@
 package codes;
 
-import static codes.Colors.*;
-
 public class GamePiece {
 
 	private String pieceColor;
 	
+	public GamePiece(String color) {
+		pieceColor = color;
+	}
+
+	public void assignColor(String color) {
+		setPieceColor(color);
+	}
+
 	public String getPieceColor() {
 		return pieceColor;
 	}
 
-	public GamePiece(String color) {
-		pieceColor = color;
+	private void setPieceColor(String pieceColor) {
+		this.pieceColor = pieceColor;
 	}
 
 	@Override
@@ -30,18 +36,10 @@ public class GamePiece {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return pieceColor + "ficha" + RESET;
+		return pieceColor + "Ficha";
 	}
 
-	public void assignColor(String color) {
-		setPieceColor(color);
-	}
-
-	private void setPieceColor(String pieceColor) {
-		this.pieceColor = pieceColor;
-	}
-
-	public String drawPiece() {
+	protected String drawPiece() {
 		return pieceColor + "  ";
 	}
 }

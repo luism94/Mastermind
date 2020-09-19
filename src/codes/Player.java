@@ -1,16 +1,12 @@
 package codes;
 
-import static codes.Constants.*;
-
-import java.util.Scanner;
-
 public abstract class Player {
 
-	protected GameMode mode;
+	protected GameMode gm;
 	
 	public Player(GameMode mode) {
-		this.mode = mode;
+		gm = mode;
 	}
 
-	public abstract Combination newTry();
+	public abstract PieceCombination createNewPlayerTrial();
 }

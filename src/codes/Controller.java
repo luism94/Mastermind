@@ -12,8 +12,7 @@ public class Controller {
 	private GameMode gm;
 	
 	public Controller() {
-		int option = showMenu();
-		boolean ia = false;
+		int option = chooseMenuOption();
 		
 		if (option == 3) {
 			System.out.println(Constants.EXIT);
@@ -21,7 +20,7 @@ public class Controller {
 			System.out.println(Constants.HOW_TO_PLAY_1);
 			System.out.println(Constants.HOW_TO_PLAY_2);
 		} else {
-			option = showGameMenu();
+			option = chooseGameOption();
 			
 			if (option == 4) {
 				gm = EASY;
@@ -36,18 +35,13 @@ public class Controller {
 				player = new User(gm);
 			}
 				//Creo el jugador, la maquina y el tablero de la partida dependiendo del modo
-				
 				system = new Computer(gm);
 				board = new TableBoard(gm);
 				startGame();
-			
-			
-			
 		}
 	}
 
 	private int showIAMenu() {
-		
 		return 0;
 	}
 
@@ -60,22 +54,22 @@ public class Controller {
 	}
 
 	private void startGame() {
-		Combination playerComb = null;
+		PieceCombination playerComb = null;
 		String solution = "";
 		boolean end = false;
 		int trialCount = 1;
 		
 		while (!end) {
-			playerComb = player.newTry();
+			playerComb = player.createNewPlayerTrial();
 			solution = system.compareCombinations(playerComb);
-			board.addTry(playerComb, solution);
+			board.addTrial(playerComb, solution);
 			board.drawingGame();
 			
 			//decidir quien gana
 			end = board.checkWinner();
 			if (!end) {
 				if (gm != EASY) {
-					end = checkTrials(trialCount);
+					end = checkPlayerTrial(trialCount);
 				}
 			} else {
 				System.out.println("WINNER!");
@@ -84,8 +78,8 @@ public class Controller {
 		}
 	}
 
-	private boolean checkTrials(int trialCount) {
-		if (trialCount < gm.getTrialNum()) {
+	private boolean checkPlayerTrial(int trialCount) {
+		if (trialCount < gm.getTrialMax()) {
 			return false;
 		} else {
 			return true;
@@ -115,7 +109,7 @@ public class Controller {
 		return gm;
 	}
 	
-	private int showGameMenu() {
+	private int chooseGameOption() {
 		Scanner scn = new Scanner(System.in);
 		
 		System.out.println(GAMEMODE_MENU_1);
@@ -124,7 +118,7 @@ public class Controller {
 		return scn.nextInt();
 	}
 
-	private int showMenu() {
+	private int chooseMenuOption() {
 		Scanner scn = new Scanner(System.in);
 		
 		System.out.println(WELCOME);

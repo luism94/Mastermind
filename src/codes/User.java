@@ -7,10 +7,10 @@ public class User extends Player{
 	}
 
 	@Override
-	public Combination newTry() {
-		Combination playerComb = new Combination(mode);
+	public PieceCombination createNewPlayerTrial() {
+		PieceCombination playerComb = new PieceCombination(gm);
 		
-		playerComb.generateCombination();
+		playerComb.createPlayerCombination();
 		
 		return playerComb;
 	}

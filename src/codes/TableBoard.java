@@ -3,26 +3,31 @@ package codes;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
+
 import static codes.Colors.*;
 
 public class TableBoard implements DrawBoard{
 
 	private GameMode gm;
-	private List<Combination> playerTrials;
+	private List<PieceCombination> playerTrials;
 	private List<String> systemSolutions;
+	
+	private final int MAXLENGTH = gm.getPieceNumber() * 3;
+	private final int MAXPIECES = gm.getPieceNumber();
 	
 	public TableBoard(GameMode mode) {
 		gm = mode;
-		playerTrials = new ArrayList<Combination>();
+		playerTrials = new ArrayList<PieceCombination>();
 		systemSolutions = new ArrayList<String>();
 	}
 
-	public void addTry(Combination playerComb, String solution) {
+	protected void addTrial(PieceCombination playerComb, String solution) {
 		playerTrials.add(playerComb);
 		systemSolutions.add(solution);
 	}
 
-	public List<Combination> getPlayerTrials() {
+	public List<PieceCombination> getPlayerTrials() {
 		return playerTrials;
 	}
 	
@@ -32,48 +37,45 @@ public class TableBoard implements DrawBoard{
 
 	@Override
 	public void drawingGame() {
-		String board = "";
-		String combDraw = "";
-		String head, body, foot = "";
-		boolean end = false;
-		Iterator combIt = playerTrials.iterator();
-		Iterator solIt = systemSolutions.iterator();
-		Combination comb = null;
-		String sol = "";
+		String combDrawing = "", header = "", body = "", footer = "", answer = "";
+		Iterator<PieceCombination> combinationIterator = playerTrials.iterator(); 
+		Iterator<String> answerIterator = systemSolutions.iterator();
+		PieceCombination playerComb = null;
 		
-		head = DARK_BOARD + "                              " + "\n";
+		header = DARK_BOARD + "                              " + "\n";
 		body = DARK_BOARD + "  " + LIGHT_BOARD + "                          " + DARK_BOARD + "  " + "\n";
-		while (combIt.hasNext() && solIt.hasNext()) {
-			comb = (Combination) combIt.next();
-			combDraw = comb.drawCombination();
-			sol = (String) solIt.next();
-			body += DARK_BOARD + "  " + LIGHT_BOARD + " " + combDraw + " " + sol + " " + DARK_BOARD + "  " + "\n";
+		while (combinationIterator.hasNext() && answerIterator.hasNext()) {
+			playerComb = (PieceCombination) combinationIterator.next();
+			combDrawing = playerComb.drawPlayerCombination();
+			answer = (String) answerIterator.next();
+			body += DARK_BOARD + "  " + LIGHT_BOARD + " " + combDrawing + " " + answer + DARK_BOARD + "  " + "\n";
 			//System.out.println(combDraw + "  " + sol);
 			body += DARK_BOARD + "  " + LIGHT_BOARD + "                          " + DARK_BOARD + "  " + "\n";
 		}
-		foot = DARK_BOARD + "                              " + "\n";
-		System.out.println(head + body + foot);
+		footer = DARK_BOARD + "                              " + RESET;
+		System.out.println(header + body + footer);
 	}
 
 	public boolean checkWinner() {
-		int redCount = 0, solIndex = 0;
-		String lastSol = systemSolutions.get(systemSolutions.size() - 1);
+		int redCount = 0, answerIndex = 0;
+		String lastAnswer = systemSolutions.get(systemSolutions.size() - 1), winner = "";
+		
+		for (int i = 0; i < MAXPIECES; i++) {
+			winner += RED + "  " + LIGHT_BOARD + " ";
+		}
 
-		while (solIndex < lastSol.length()) {
-			if (lastSol.substring(solIndex, solIndex + 12).equals(RED + "  " + RESET + " ")) {
+		while (answerIndex < lastAnswer.length()) {
+			if (lastAnswer.substring(answerIndex, answerIndex + MAXLENGTH).equals(winner)) {
 				redCount++;
 			}
 			
-			solIndex += 12;
+			answerIndex += MAXLENGTH;
 		}
 		
-		if (redCount == 4) {
+		if (redCount == MAXPIECES) {
 			return true;
 		} else {
 			return false;
 		}
-		
-		
 	}
-
 }

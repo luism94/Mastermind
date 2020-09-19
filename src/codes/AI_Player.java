@@ -9,19 +9,17 @@ public class AI_Player extends Player{
 	}
 
 	@Override
-	public Combination newTry() {
-		Combination ia = createNewCombination();
-		
-		return ia;
+	public PieceCombination createNewPlayerTrial() {	
+		return createAIPlayerCombination();
 	}
 
-	private Combination createNewCombination() {
-		Combination comb = new Combination(mode);
+	private PieceCombination createAIPlayerCombination() {
+		PieceCombination comb = new PieceCombination(gm);
 		Random rndm = new Random();
 		int option = 0;
-		for (int i = 0; i < mode.getPieceNum(); i++) {
-			option = rndm.nextInt(mode.getColorNum()) + 1;
-			comb.generateNewPiece(i, option);
+		for (int i = 0; i < gm.getPieceNumber(); i++) {
+			option = rndm.nextInt(gm.getColorNumber()) + 1;
+			comb.createNewPiece(i, option);
 		}
 		
 		return comb;
