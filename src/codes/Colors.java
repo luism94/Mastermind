@@ -16,4 +16,6 @@ public class Colors {
 	public static final String ORANGE = "\u001B[48;2;255;100;0m";
 	public static final String LIGHT_BOARD = "\u001B[48;2;255;200;140m";
 	public static final String DARK_BOARD = "\u001B[48;2;175;105;40m";
+	public static final String NULL = "";
+	
 }

@@ -9,12 +9,12 @@ public class AI_Player extends Player{
 	}
 
 	@Override
-	public PieceCombination createNewPlayerTrial() {	
+	public Combination createNewPlayerTrial() {	
 		return createAIPlayerCombination();
 	}
 
-	private PieceCombination createAIPlayerCombination() {
-		PieceCombination comb = new PieceCombination(gm);
+	private Combination createAIPlayerCombination() {
+		Combination comb = new Combination(gm);
 		Random rndm = new Random();
 		int option = 0;
 		for (int i = 0; i < gm.getPieceNumber(); i++) {

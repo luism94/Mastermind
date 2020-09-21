@@ -1,5 +1,8 @@
 package codes;
 
+import static codes.Colors.*;
+import static codes.Constants.*;
+
 public class GamePiece {
 
 	private String pieceColor;
@@ -8,8 +11,8 @@ public class GamePiece {
 		pieceColor = color;
 	}
 
-	public void assignColor(String color) {
-		setPieceColor(color);
+	public GamePiece() {
+		pieceColor = NULL;
 	}
 
 	public String getPieceColor() {
@@ -18,6 +21,14 @@ public class GamePiece {
 
 	private void setPieceColor(String pieceColor) {
 		this.pieceColor = pieceColor;
+	}
+
+	public void assignColor(String color) {
+		setPieceColor(color);
+	}
+
+	public void generatePiece(int colorOption) {
+		assignColor(pickColorPiece(colorOption));
 	}
 
 	@Override
@@ -35,11 +46,45 @@ public class GamePiece {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return pieceColor + "Ficha";
 	}
 
 	protected String drawPiece() {
 		return pieceColor + "  ";
+	}
+
+	protected String pickColorPiece(int colorOption) {
+		String color = "";
+	
+		switch (colorOption) {
+		case 1:
+			color = RED;
+			break;
+		case 2:
+			color = GREEN;
+			break;
+		case 3:
+			color = BLUE;
+			break;
+		case 4:
+			color = YELLOW;
+			break;
+		case 5:
+			color = BROWN;
+			break;
+		case 6:
+			color = ORANGE;
+			break;
+		case 7:
+			color = BLACK;
+			break;
+		case 8:
+			color = WHITE;
+			break;
+		default:
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP);
+		}
+		
+		return color;
 	}
 }

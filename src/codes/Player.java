@@ -8,5 +8,5 @@ public abstract class Player {
 		gm = mode;
 	}
 
-	public abstract PieceCombination createNewPlayerTrial();
+	public abstract Combination createNewPlayerTrial();
 }

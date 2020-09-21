@@ -12,24 +12,28 @@ import static codes.Colors.*;
 public class Computer {
 
 	private GameMode gm;
-	private PieceCombination secretComb;
+	private Combination secretComb;
 	
 	public Computer(GameMode mode) {
 		gm = mode;
-		secretComb = createComputerCombination();	//Array con las fichas de la respuesta secreta
-		System.out.println(secretComb);				//se muestra en pantalla para pruebas
-		//Genero una ficha de un color aleatorio y compruebo si esta repetida
+		secretComb = new Combination(gm);
+		if (!gm.repeatedColors()) {
+			secretComb.createSecretCombinationNoRepetition();
+		} else {
+			//secretComb.createSecretCombinationWithRepetition();
+		}
+		System.out.println(secretComb);	//se muestra en pantalla para pruebas
 	}
 
-	public PieceCombination getSecretComb() {
+	public Combination getSecretComb() {
 		return secretComb;
 	}
 
-	private void setSecretComb(PieceCombination secretComb) {
+	private void setSecretComb(Combination secretComb) {
 		this.secretComb = secretComb;
 	}
 
-	public String compareCombinations(PieceCombination playerComb) {
+	public String compareCombinations(Combination playerComb) {
 		//ficha de la cmb del jugador con toda la comb secreta
 		//En la comb de la respuesta se coloca una ficha roja, blanca o nada en la posicion oportuna
 		String solution = "";
@@ -42,22 +46,21 @@ public class Computer {
 		return solution;
 	}
 
-	private PieceCombination createComputerCombination() {
-		Random generator = new Random();
-		GamePiece pieceToCheck = null;
-		PieceCombination computerComb = new PieceCombination(gm);
-		int count = 0;
-
-		while (count < gm.getPieceNumber()) {
-			pieceToCheck = new GamePiece(computerComb.pickColorPiece(generator.nextInt(gm.getColorNumber()) + 1));
-			
-			if (!computerComb.checkExistence(pieceToCheck)) {
-				//busco si esta repetido	
-				computerComb.getPieceCombiantion()[count] = pieceToCheck;
-				count++;
-			}
-		}
-		
-		return computerComb;
-	}
+//	//Cambiarlo a la clase Combinacion
+//	private void createSecretCombinationNoRepetition() {
+//		Random generator = new Random();
+//		GamePiece pieceToCheck = new GamePiece();
+//		int count = 0;
+//
+//		while (count < gm.getPieceNumber()) {
+//			pieceToCheck.generatePiece(generator.nextInt(gm.getColorNumber()) + 1);
+//			
+//			if (!secretComb.checkExistence(pieceToCheck)) {
+//			
+//				//busco si esta repetido	
+//				secretComb.addPiece(count, pieceToCheck);
+//				count++;
+//			}
+//		}
+//	}
 }

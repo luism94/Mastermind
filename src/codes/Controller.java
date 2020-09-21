@@ -54,7 +54,7 @@ public class Controller {
 	}
 
 	private void startGame() {
-		PieceCombination playerComb = null;
+		Combination playerComb = null;
 		String solution = "";
 		boolean end = false;
 		int trialCount = 1;
