@@ -31,41 +31,6 @@ public class Combination {
 		comb[position] = piece;
 	}
 
-//	protected String pickColorPiece(int colorOption) {
-//		String color = "";
-//	
-//		switch (colorOption) {
-//		case 1:
-//			color = RED;
-//			break;
-//		case 2:
-//			color = GREEN;
-//			break;
-//		case 3:
-//			color = BLUE;
-//			break;
-//		case 4:
-//			color = YELLOW;
-//			break;
-//		case 5:
-//			color = BROWN;
-//			break;
-//		case 6:
-//			color = ORANGE;
-//			break;
-//		case 7:
-//			color = BLACK;
-//			break;
-//		case 8:
-//			color = WHITE;
-//			break;
-//		default:
-//			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP);
-//		}
-//		
-//		return color;
-//	}
-
 	protected void createSecretCombinationNoRepetition() {
 		Random generator = new Random();
 		GamePiece pieceToCheck = new GamePiece();
@@ -90,20 +55,6 @@ public class Combination {
 	protected boolean checkExistence(GamePiece pieceToCheck) {
 		return Arrays.asList(comb).contains(pieceToCheck);
 	}
-
-	//Cambiar a clase Jugador
-//	protected void createPlayerCombination() {
-//		Scanner scn = new Scanner(System.in);
-//		
-//		System.out.println(COLOR_MENU_1);
-//		System.out.println(COLOR_MENU_2);
-//		
-//		for (int i = 0; i < gm.getPieceNumber(); i++) {
-//			
-//			System.out.println("Choose a color to put into the gamepiece: ");
-//			comb[i] = new GamePiece(pickColorPiece(scn.nextInt()));
-//		}
-//	}
 
 	public String checkPlayerCombinationWithRepetition(Combination playerComb) {
 		String solution = "";
@@ -143,7 +94,6 @@ public class Combination {
 		return solution;
 	}
 
-	//terminar metodo
 	protected String checkPlayerCombinationNoRepetition(Combination playerComb) {
 		
 		int playerCount = 0, secretCount, whiteCount = 0, redCount = 0, checkedCount = 0, emptySpaces;
