@@ -3,7 +3,6 @@ package codes;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 import static codes.Constants.*;
 
 import static codes.Colors.*;

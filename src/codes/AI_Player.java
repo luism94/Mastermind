@@ -19,7 +19,7 @@ public class AI_Player extends Player{
 		int option = 0;
 		for (int i = 0; i < gm.getPieceNumber(); i++) {
 			option = rndm.nextInt(gm.getColorNumber()) + 1;
-			comb.createNewPiece(i, option);
+			comb.addPiece(i, option);
 		}
 		
 		return comb;
