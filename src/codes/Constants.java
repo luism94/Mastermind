@@ -1,5 +1,7 @@
 package codes;
 
+import static codes.Colors.*;
+
 public class Constants {
 
 	static final String COLOR_MENU_1 = "Choose one color: \n";
@@ -29,4 +31,8 @@ public class Constants {
 	static final String MAIN_MENU_2 = "1. Start a new game\n2. How to play\n3. Exit game";
 	static final String MAIN_MENU_3 = "Choose one option: ";
 	static final String WELCOME = "Mastermind: Welcome!";
+	static final String BOARD_LENGTH = "                               ";
+	static final String BOARD_LENGTH_INNER = "                           ";
+	static final String BOARD_PIECE = "  ";
+	static final String BOARD_TITLE = "       " + DARK_BOARD + " MASTERMIND " + LIGHT_BOARD + "        ";
 }
