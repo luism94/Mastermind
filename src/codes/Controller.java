@@ -20,18 +20,18 @@ public class Controller {
 			System.out.println(Constants.HOW_TO_PLAY_1);
 			System.out.println(Constants.HOW_TO_PLAY_2);
 		} else {
-			option = chooseGameOption();
+			
+			option = pickGameOption();
 			
 			if (option == 4) {
+				//gm = selectGameMode(option);
 				gm = EASY;
-				//cargar IA
 				player = new AI_Player(gm);
-				//ordenador y tablero igual
 				
 			} else {
-				
 				//Elijo el modo de juego por la opcion escogida
-				gm = chooseGameMode(option);
+				//option = showIAMenu();
+				gm = selectGameMode(option);
 				player = new User(gm);
 			}
 				//Creo el jugador, la maquina y el tablero de la partida dependiendo del modo
@@ -42,15 +42,16 @@ public class Controller {
 	}
 
 	private int showIAMenu() {
+		System.out.println();
+		
 		return 0;
 	}
 
-	private boolean chooseIAPlayer(int option) {
+	private void chooseIAPlayer(int option) {
 		switch (option) {
 		case 1:
 			
 		}
-		return false;
 	}
 
 	private void startGame() {
@@ -86,11 +87,11 @@ public class Controller {
 		}
 	}
 
-	private GameMode chooseGameMode(int option) {
+	private GameMode selectGameMode(int option) {
 		GameMode gm = null;
 		
-		System.out.println(GAMEMODE_MENU_1);
-		System.out.println(GAMEMODE_MENU_2);
+//		System.out.println(GAMEMODE_MENU_1);
+//		System.out.println(GAMEMODE_MENU_2);
 		
 		switch(option) {
 		case 1:
@@ -109,11 +110,11 @@ public class Controller {
 		return gm;
 	}
 	
-	private int chooseGameOption() {
+	private int pickGameOption() {
 		Scanner scn = new Scanner(System.in);
 		
-		System.out.println(GAMEMODE_MENU_1);
 		System.out.println(GAMEMODE_MENU_2);
+		System.out.println(GAMEMODE_MENU_1);
 		
 		return scn.nextInt();
 	}

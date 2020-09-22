@@ -17,7 +17,7 @@ public class Combination {
 		comb = new GamePiece[mode.getPieceNumber()];
 	}
 
-	public GamePiece[] getPieceCombiantion() {
+	public GamePiece[] getPieceCombination() {
 		return comb;
 	}
 
@@ -47,6 +47,16 @@ public class Combination {
 		}	
 	}
 	
+	protected void createSecretCombinationWithRepetition() {
+		Random generator = new Random();
+		GamePiece pieceToCheck = new GamePiece();
+
+		for (int i = 0; i < gm.getPieceNumber(); i++) {
+			pieceToCheck.generatePiece(generator.nextInt(gm.getColorNumber()) + 1);	
+			addPiece(i, pieceToCheck);
+		}	
+	}
+	
 	/* El metodo asList consigue envolver un array para se comporte como una Lista o Coleccion para usar
 	 * de forma que pueda usar los metodos propios de una Lista o Coleccion
 	 * Es un metodo puente que consigue conectar las listas y colecciones con los arrays, al igual
@@ -57,16 +67,17 @@ public class Combination {
 	}
 
 	public String checkPlayerCombinationWithRepetition(Combination playerComb) {
-		String solution = "";
+		String answer = "";
 		GamePiece piece = null;
 		GamePiece[] secretCopy = new GamePiece[gm.getPieceNumber()];
-		int playerCount = 0, secretCount, redCount = 0, whiteCount = 0;
+		int playerCount = 0, secretCount, redCount = 0, whiteCount = 0, emptySpaces = 0;
 		
 		while (playerCount < gm.getPieceNumber()) {
 			secretCount = 0;
-			piece = playerComb.getPieceCombiantion()[playerCount];
+			piece = playerComb.getPieceCombination()[playerCount];
+			
 			while (secretCount < gm.getPieceNumber()) {
-				if (piece.equals(this.getPieceCombiantion()[secretCount])) {
+				if (piece.equals(getPieceCombination()[secretCount])) {
 					if (secretCopy[secretCount] == null) {
 						//esta en la secreta
 						if (secretCount == playerCount) {
@@ -76,22 +87,37 @@ public class Combination {
 						}
 						//copio la ficha de la secreta en su posicion si coincide con la del jugador
 						secretCopy[secretCount] = piece;
+					} else if (piece.equals(secretCopy[secretCount])) {
+						if (secretCount == playerCount) {
+							whiteCount--;
+							redCount++;
+						}
 					}
 				}
+				
 				secretCount++;
 			}
+			
 			playerCount++;
 		}
 		
 		for (int i = 0; i < redCount; i++) {
-			solution = solution + RED + "  " + LIGHT_BOARD + " ";
+			answer += RED + "  " + LIGHT_BOARD + " ";
 		}
 		
 		for (int i = 0; i < whiteCount; i++) {
-			solution = solution + WHITE + "  " + LIGHT_BOARD + " ";
+			answer += WHITE + "  " + LIGHT_BOARD + " ";
 		}
 		
-		return solution;
+		emptySpaces = gm.getPieceNumber() - (redCount + whiteCount);
+		
+		if (emptySpaces != 0) {	//para asegurar que no se ejecuta si no queda hueco dentro
+			for (int i = 0; i < emptySpaces; i++) {
+				answer += LIGHT_BOARD + "   ";
+			} 
+		}
+		
+		return answer;
 	}
 
 	protected String checkPlayerCombinationNoRepetition(Combination playerComb) {
@@ -105,11 +131,11 @@ public class Combination {
 		while (playerCount < gm.getPieceNumber()) {
 			secretCount = 0;
 			checkedCount = 0;
-			piece = playerComb.getPieceCombiantion()[playerCount];
+			piece = playerComb.getPieceCombination()[playerCount];
 			alreadyChecked = false;
 			
 			while (secretCount < gm.getPieceNumber()) {
-				if (piece.equals(this.getPieceCombiantion()[secretCount])) {
+				if (piece.equals(getPieceCombination()[secretCount])) {
 					//esta en la secreta
 					while (checkedCount < gm.getPieceNumber()) {	//for?
 						//compruebo si ese color ya se ha comprobado en la secreta

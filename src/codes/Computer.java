@@ -20,7 +20,7 @@ public class Computer {
 		if (!gm.repeatedColors()) {
 			secretComb.createSecretCombinationNoRepetition();
 		} else {
-			//secretComb.createSecretCombinationWithRepetition();
+			secretComb.createSecretCombinationWithRepetition();
 		}
 		System.out.println(secretComb);	//se muestra en pantalla para pruebas
 	}
@@ -38,7 +38,7 @@ public class Computer {
 		String solution = "";
 		
 		if (gm.repeatedColors()) {
-			//solution = secretComb.checkPlayerCombinationWithRepetition(playerComb);
+			solution = secretComb.checkPlayerCombinationWithRepetition(playerComb);
 		} else {
 			solution = secretComb.checkPlayerCombinationNoRepetition(playerComb);
 		}

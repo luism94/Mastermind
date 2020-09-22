@@ -4,10 +4,10 @@ import static codes.Colors.*;
 
 public class Constants {
 
-	static final String COLOR_MENU_1 = "Choose one color: \n";
+	static final String COLOR_MENU_1 = "Choose one color:";
 	static final String COLOR_MENU_2 = "1. RED 2. GREEN 3. BLUE 4. YELLOW\n5. BROWN 6. ORANGE 7. BLACK 8. WHITE";
 	static final String EXIT = "Closing game..... ..... .....";
-	static final String GAMEMODE_MENU_1 = "Choose one game mode: \n";
+	static final String GAMEMODE_MENU_1 = "Choose one game mode:";
 	static final String GAMEMODE_MENU_2 = "1. EASY 2. NORMAL 3. INTERMEDIATE 4.HARD";
 	static final String HOW_TO_PLAY_1 = "Mastermind es un juego de combinacion de colores, donde dos\r\n" + 
 			"jugadores se enfrentan entre si, la maquina y el usuario.\nEn el " + 
@@ -32,7 +32,10 @@ public class Constants {
 	static final String MAIN_MENU_3 = "Choose one option: ";
 	static final String WELCOME = "Mastermind: Welcome!";
 	static final String BOARD_LENGTH = "                               ";
+	static final String BOARD_LENGTH_MED = "                                           ";
 	static final String BOARD_LENGTH_INNER = "                           ";
+	static final String BOARD_LENGHT_INNER_MED = "                                       ";
 	static final String BOARD_PIECE = "  ";
 	static final String BOARD_TITLE = "       " + DARK_BOARD + " MASTERMIND " + LIGHT_BOARD + "        ";
+	static final String BOARD_TITLE_MED = "             " + DARK_BOARD + " MASTERMIND " + LIGHT_BOARD + "              ";
 }

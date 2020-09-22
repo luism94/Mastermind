@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import static codes.Constants.*;
-
 import static codes.Colors.*;
 
 public class TableBoard implements DrawBoard{
@@ -39,18 +38,35 @@ public class TableBoard implements DrawBoard{
 		Iterator<String> answerIterator = systemSolutions.iterator();
 		Combination playerComb = null;
 		
-		header = DARK_BOARD + BOARD_LENGTH + "\n";
-		body = DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_LENGTH_INNER + DARK_BOARD + BOARD_PIECE + "\n";
-		body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_TITLE + DARK_BOARD + BOARD_PIECE + "\n";
-		body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_LENGTH_INNER + DARK_BOARD + BOARD_PIECE + "\n";
-		while (combinationIterator.hasNext() && answerIterator.hasNext()) {
-			playerComb = (Combination) combinationIterator.next();
-			combDrawing = playerComb.drawPlayerCombination();
-			answer = (String) answerIterator.next();
-			body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + " " + combDrawing + DARK_BOARD + " " + LIGHT_BOARD + " " + answer + DARK_BOARD + BOARD_PIECE + "\n";
+		if (!gm.repeatedColors()) {
+			header = DARK_BOARD + BOARD_LENGTH + "\n";
+			body = DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_LENGTH_INNER + DARK_BOARD + BOARD_PIECE + "\n";
+			body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_TITLE + DARK_BOARD + BOARD_PIECE + "\n";
 			body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_LENGTH_INNER + DARK_BOARD + BOARD_PIECE + "\n";
+			while (combinationIterator.hasNext() && answerIterator.hasNext()) {
+				playerComb = (Combination) combinationIterator.next();
+				combDrawing = playerComb.drawPlayerCombination();
+				answer = (String) answerIterator.next();
+				body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + " " + combDrawing + DARK_BOARD + " " + LIGHT_BOARD
+						+ " " + answer + DARK_BOARD + BOARD_PIECE + "\n";
+				body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_LENGTH_INNER + DARK_BOARD + BOARD_PIECE + "\n";
+			}
+			footer = DARK_BOARD + BOARD_LENGTH + RESET;
+		} else {
+			header = DARK_BOARD + BOARD_LENGTH_MED + "\n";
+			body = DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_LENGHT_INNER_MED + DARK_BOARD + BOARD_PIECE + "\n";
+			body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_TITLE_MED + DARK_BOARD + BOARD_PIECE + "\n";
+			body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_LENGHT_INNER_MED + DARK_BOARD + BOARD_PIECE + "\n";
+			while (combinationIterator.hasNext() && answerIterator.hasNext()) {
+				playerComb = (Combination) combinationIterator.next();
+				combDrawing = playerComb.drawPlayerCombination();
+				answer = (String) answerIterator.next();
+				body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + " " + combDrawing + DARK_BOARD + " " + LIGHT_BOARD
+						+ " " + answer + DARK_BOARD + BOARD_PIECE + "\n";
+				body += DARK_BOARD + BOARD_PIECE + LIGHT_BOARD + BOARD_LENGHT_INNER_MED + DARK_BOARD + BOARD_PIECE + "\n";
+			}
+			footer = DARK_BOARD + BOARD_LENGTH_MED + RESET;
 		}
-		footer = DARK_BOARD + BOARD_LENGTH + RESET;
 		System.out.println(header + body + footer);
 	}
 
