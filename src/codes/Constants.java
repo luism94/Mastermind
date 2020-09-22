@@ -4,6 +4,8 @@ import static codes.Colors.*;
 
 public class Constants {
 
+	static final String GAMEMODE_MENU_2_IA = "1. EASY 2. NORMAL 3. INTERMEDIATE";
+	static final String IA_MENU = "Choose the game mode for the AI Player: ";
 	static final String COLOR_MENU_1 = "Choose one color:";
 	static final String COLOR_MENU_2 = "1. RED 2. GREEN 3. BLUE 4. YELLOW\n5. BROWN 6. ORANGE 7. BLACK 8. WHITE";
 	static final String EXIT = "Closing game..... ..... .....";

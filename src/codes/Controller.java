@@ -12,20 +12,22 @@ public class Controller {
 	private GameMode gm;
 	
 	public Controller() {
-		int option = chooseMenuOption();
+		int option = pickMenuOption();
 		
 		if (option == 3) {
 			System.out.println(Constants.EXIT);
 		} else if (option == 2) {
 			System.out.println(Constants.HOW_TO_PLAY_1);
 			System.out.println(Constants.HOW_TO_PLAY_2);
-		} else {
+		} else if (option == 1) {
 			
 			option = pickGameOption();
 			
 			if (option == 4) {
-				//gm = selectGameMode(option);
-				gm = EASY;
+				System.out.println(IA_MENU);
+				option = pickGameOptionForIAPlayer();
+				gm = selectGameMode(option);
+				//gm = EASY;
 				player = new AI_Player(gm);
 				
 			} else {
@@ -34,25 +36,27 @@ public class Controller {
 				gm = selectGameMode(option);
 				player = new User(gm);
 			}
-				//Creo el jugador, la maquina y el tablero de la partida dependiendo del modo
-				system = new Computer(gm);
-				board = new TableBoard(gm);
-				startGame();
+			//Creo el jugador, la maquina y el tablero de la partida dependiendo del modo
+			system = new Computer(gm);
+			board = new TableBoard(gm);
+			startGame();
+		} else {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP);
 		}
 	}
 
-	private int showIAMenu() {
-		System.out.println();
-		
-		return 0;
-	}
-
-	private void chooseIAPlayer(int option) {
-		switch (option) {
-		case 1:
-			
-		}
-	}
+//	private int showIAMenu() {
+//		System.out.println();
+//		
+//		return 0;
+//	}
+//
+//	private void chooseIAPlayer(int option) {
+//		switch (option) {
+//		case 1:
+//			
+//		}
+//	}
 
 	private void startGame() {
 		Combination playerComb = null;
@@ -103,6 +107,8 @@ public class Controller {
 		case 3:
 			gm = MEDIUM;
 			break;
+		case 4:
+			
 		default:
 			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP);
 		}
@@ -118,8 +124,17 @@ public class Controller {
 		
 		return scn.nextInt();
 	}
+	
+	private int pickGameOptionForIAPlayer() {
+		Scanner scn = new Scanner(System.in);
+		
+		System.out.println(GAMEMODE_MENU_2_IA);
+		System.out.println(GAMEMODE_MENU_1);
+		
+		return scn.nextInt();
+	}
 
-	private int chooseMenuOption() {
+	private int pickMenuOption() {
 		Scanner scn = new Scanner(System.in);
 		
 		System.out.println(WELCOME);
