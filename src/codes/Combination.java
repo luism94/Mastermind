@@ -25,6 +25,15 @@ public class Combination {
 		}
 	}
 
+	public void setPieceCombination(GamePiece[] comb) {
+		//SEGURIDAD PARA JUNIT
+		if (comb == null) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP);
+		} else {
+			this.comb = comb;
+		}
+	}
+
 	public GameMode getGameMode() {
 		return gm;
 	}
