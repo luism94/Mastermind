@@ -13,8 +13,24 @@ public class Combination {
 	private GamePiece[] comb;
 
 	public Combination(GameMode mode) {
-		gm = mode;
+		assignGameMode(mode);
 		comb = new GamePiece[mode.getPieceNumber()];
+	}
+	
+	public void assignGameMode(GameMode gm) {
+		if (gm == null) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP + " Game Mode is null");
+		} else {
+			setGameMode(gm);
+		}
+	}
+
+	public GameMode getGameMode() {
+		return gm;
+	}
+
+	private void setGameMode(GameMode gm) {
+		this.gm = gm;
 	}
 
 	public GamePiece[] getPieceCombination() {
@@ -22,12 +38,28 @@ public class Combination {
 	}
 
 	public void addPiece(int position, GamePiece piece) {
+		if (position < 0 || position >= gm.getPieceNumber()) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP + " Wrong piece index");
+		}
+		
+		if (piece == null) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP + " GamePiece is null");
+		}
+		
 		comb[position] = new GamePiece(piece.getPieceColor());
 	}
 
-	public void addPiece(int position, int nextInt) {
+	public void addPiece(int position, int colorIndex) {
+		if (position < 0 || position >= gm.getPieceNumber()) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP + " Wrong piece index");
+		}
+		
+		if (colorIndex < 1 || colorIndex >= gm.getColorNumber()) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP + " Wrong color option");
+		}
+		
 		GamePiece piece = new GamePiece();
-		piece.generatePiece(nextInt);
+		piece.generatePiece(colorIndex);
 		comb[position] = piece;
 	}
 
@@ -63,10 +95,17 @@ public class Combination {
 	 * que el metodo Collection.toArray()
 	 */
 	protected boolean checkExistence(GamePiece pieceToCheck) {
+		if (pieceToCheck == null) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP + " GamePiece is null");
+		}
 		return Arrays.asList(comb).contains(pieceToCheck);
 	}
 
 	public String checkPlayerCombinationWithRepetition(Combination playerComb) {
+		if (playerComb == null) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP + " Piece Comb is null");
+		}
+		
 		String answer = "";
 		GamePiece piece = null;
 		GamePiece[] secretCopy = new GamePiece[gm.getPieceNumber()];
@@ -121,6 +160,9 @@ public class Combination {
 	}
 
 	protected String checkPlayerCombinationNoRepetition(Combination playerComb) {
+		if (playerComb == null) {
+			throw new IllegalArgumentException(ILLEGAL_ARG_EXCP + " Piece Comb is null");
+		}
 		
 		int playerCount = 0, secretCount, whiteCount = 0, redCount = 0, checkedCount = 0, emptySpaces;
 		boolean alreadyChecked;
